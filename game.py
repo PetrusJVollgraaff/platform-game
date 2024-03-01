@@ -63,11 +63,11 @@ def playerhandler(player, objects):
 
     handle_vertical_collision(player, objects, player.vel_y)
 
-def draw_onboard(win, player, objects):
+def draw_onboard(win, player, objects, offset_x):
     for block in objects:
-        block.draw(win)
+        block.draw(win, offset_x)
 
-    player.draw(win)
+    player.draw(win, offset_x)
     pygame.display.update()
 
 def main(win):
@@ -77,9 +77,12 @@ def main(win):
     floor = [Ground(i * floor_size, screen_height - floor_size, floor_size)
              for i in range(-screen_width // floor_size, (screen_width * 2) // floor_size)]
 
-    player = Player(20, 20)
+    player = Player(20, screen_height - floor_size + 2)
     #ground = Ground(150, 150, )
     objects = [*floor]
+    offset_x = 0
+    scroll_area_width = 200
+
     while run:
         clock.tick(FPS)
         win.fill((0, 0, 0))
@@ -93,4 +96,8 @@ def main(win):
 
         player.loop(FPS)
         playerhandler(player, objects)
-        draw_onboard(win, player, objects)
+        draw_onboard(win, player, objects, offset_x)
+
+        #if ((player.rect.right - offset_x >= screen_width - scroll_area_width) and player.vel_x > 0) or (
+        #        (player.rect.right - offset_x <= scroll_area_width) and player.vel_x < 0):
+        #    offset_x += player.vel_x

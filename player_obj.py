@@ -7,6 +7,8 @@ class Player:
 
 
     def __init__(self, x, y):
+        self.x = x
+        self.y = y
         self.vel_x = 0
         self.vel_y = 0
         self.dir = "left"
@@ -16,7 +18,8 @@ class Player:
         self.isDead = False
         self.rect = pygame.Rect(x, y, self.size[0], self.size[1])
 
-    def draw(self, win):
+    def draw(self, win, offset_x):
+        #self.rect.x = self.rect.x - offset_x
         pygame.draw.rect(win, self.color, self.rect)
 
     def jump(self):
@@ -31,6 +34,10 @@ class Player:
     def move(self, dx, dy):
         self.rect.x += dx
         self.rect.y += dy
+
+        self.x = self.rect.x
+        self.y = self.rect.y
+
 
     def move_left(self, vel):
         self.vel_x = -vel
