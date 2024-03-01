@@ -20,9 +20,10 @@ def handle_vertical_collision(player, objects, dy):
     collided_obj = []
 
     for obj in objects:
+        #if pygame.sprite.collide_mask(player, obj):
         if dy > 0:
-            player.rect.bottom = obj.rect.top
-            player.landed()
+           player.rect.bottom = obj.rect.top
+           player.landed()
         elif dy < 0:
             player.rect.top = obj.rect.bottom
             player.hit_head()
@@ -77,6 +78,7 @@ def main(win):
     floor = [Ground(i * floor_size, screen_height - floor_size, floor_size)
              for i in range(-screen_width // floor_size, (screen_width * 2) // floor_size)]
 
+    wall = [Ground(500, screen_height - (floor_size * 2), floor_size), Ground(550, screen_height - (floor_size * 3), floor_size)]
     player = Player(20, screen_height - floor_size + 2)
     #ground = Ground(150, 150, )
     objects = [*floor]
