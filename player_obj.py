@@ -63,3 +63,6 @@ class Player:
     def hit_head(self):
         self.count = 0
         self.vel_y *= -1
+
+    def update(self):
+        self.rect = self.rect

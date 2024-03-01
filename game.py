@@ -20,32 +20,31 @@ def handle_vertical_collision(player, objects, dy):
     collided_obj = []
 
     for obj in objects:
-        #if pygame.sprite.collide_mask(player, obj):
-        if dy > 0:
-           player.rect.bottom = obj.rect.top
-           player.landed()
-        elif dy < 0:
-            player.rect.top = obj.rect.bottom
-            player.hit_head()
+        if player.rect.colliderect(obj.rect):
+            if dy > 0:
+                player.rect.bottom = obj.rect.top
+                player.landed()
+            elif dy < 0:
+                player.rect.top = obj.rect.bottom
+                player.hit_head()
 
         collided_obj.append(obj)
     return collided_obj
 
 def handle_horizontal_collision(player, objects, dx):
     player.move(dx, 0)
-    player.update()
+    #player.update()
     collided_obj = None
 
     for obj in objects:
-        if pygame.sprite.collide_mask(player, obj):
+        if player.rect.colliderect(obj.rect):
             collided_obj = obj
             break
 
 
     player.move(-dx, 0)
-    player.update()
+    #player.update()
     return collided_obj
-
 
 def draw_text(win, text, color, top, left, font ):
     label = font.render(text, 1, color)
@@ -56,13 +55,16 @@ def playerhandler(player, objects):
     keys = pygame.key.get_pressed()
     player.vel_x = 0
 
+    collide_left = handle_horizontal_collision(player, objects, -Player_vel * 3)
+    collide_right = handle_horizontal_collision(player, objects, Player_vel * 3)
+
     if keys[pygame.K_LEFT]:
         player.move_left(Player_vel)
 
     if keys[pygame.K_RIGHT]:
         player.move_right(Player_vel)
 
-    handle_vertical_collision(player, objects, player.vel_y)
+    vertical_collide = handle_vertical_collision(player, objects, player.vel_y)
 
 def draw_onboard(win, player, objects, offset_x):
     for block in objects:
@@ -78,10 +80,10 @@ def main(win):
     floor = [Ground(i * floor_size, screen_height - floor_size, floor_size)
              for i in range(-screen_width // floor_size, (screen_width * 2) // floor_size)]
 
-    wall = [Ground(500, screen_height - (floor_size * 2), floor_size), Ground(550, screen_height - (floor_size * 3), floor_size)]
+    wall = [Ground(550, screen_height - (floor_size * 3), floor_size)]
     player = Player(20, screen_height - floor_size + 2)
     #ground = Ground(150, 150, )
-    objects = [*floor]
+    objects = [*floor, Ground(500, screen_height - (floor_size * 2), floor_size)]
     offset_x = 0
     scroll_area_width = 200
 
