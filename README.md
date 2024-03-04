@@ -1,5 +1,5 @@
-# Space Invaders
-Using Python and PyGame to create space invader game
+# Platform game
+Using Python and PyGame to create Platform game "old mario brothers game"
 
 ### Action added:
 > * Starting Screen
