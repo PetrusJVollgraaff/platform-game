@@ -1,6 +1,7 @@
 import pygame
 from player_obj import Player
-from Objects import Ground
+#from Objects import Ground
+from Levels import Level1
 
 BG_Color = (255, 255, 255)
 screen_width = 800
@@ -67,23 +68,27 @@ def playerhandler(player, objects):
     vertical_collide = handle_vertical_collision(player, objects, player.vel_y)
 
 def draw_onboard(win, player, objects, offset_x):
-    for block in objects:
-        block.draw(win, offset_x)
+    #for block in objects:
+    #    block.draw(win, offset_x)
+    objects.draw(win)
 
-    player.draw(win, offset_x)
+    #player.draw(win, offset_x)
     pygame.display.update()
 
 def main(win):
     clock = pygame.time.Clock()
     run = True
     floor_size = 64
-    floor = [Ground(i * floor_size, screen_height - floor_size, floor_size)
-             for i in range(-screen_width // floor_size, (screen_width * 2) // floor_size)]
+    #floor = [Ground(i * floor_size, screen_height - floor_size, floor_size)
+    #         for i in range(-screen_width // floor_size, (screen_width * 2) // floor_size)]
 
-    wall = [Ground(550, screen_height - (floor_size * 3), floor_size)]
+    #wall = [Ground(550, screen_height - (floor_size * 3), floor_size)]
     player = Player(20, screen_height - floor_size + 2)
     #ground = Ground(150, 150, )
-    objects = [*floor, Ground(500, screen_height - (floor_size * 2), floor_size)]
+    #objects = [*floor, Ground(500, screen_height - (floor_size * 2), floor_size)]
+    level_map = Level1
+    objects = level_map.add_Ground(floor_size)
+
     offset_x = 0
     scroll_area_width = 200
 
