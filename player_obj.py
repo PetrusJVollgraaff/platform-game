@@ -23,7 +23,11 @@ class Player:
         pygame.draw.rect(win, self.color, self.rect)
 
     def jump(self):
-        pass
+        self.vel_y = -self.gravity * 8
+        self.jump_count += 1
+
+        if self.jump_count == 1:
+            self.fall_count = 0
 
     def hit(self):
         pass

@@ -65,6 +65,11 @@ def main(win):
                 pygame.display.quit()
                 quit()
 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and player.jump_count < 2:
+                    player.jump()
+
+
 
         player.loop(FPS)
         playerhandler(player, level_map)
