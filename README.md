@@ -13,3 +13,7 @@ Using Python and PyGame to create space invader game
 ## Outstandin
 > * fix left/right collide with Objects
 > * Camera move with player
+> * is Player hit
+> * is Player dead after falling out of screen view
+> * Changing of levels/maps
+> * is Player at finish line
