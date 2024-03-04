@@ -15,6 +15,7 @@ class Object:
         #win.blit(self.image, (self.rect.x, self.rect.y))
         pygame.draw.rect(win, self.color, self.rect)
 
+
 class Ground(Object):
     def __init__(self, x, y, size = 64):
         super().__init__(x, y, size, size, (0, 255, 0))

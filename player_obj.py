@@ -38,7 +38,6 @@ class Player:
         self.x = self.rect.x
         self.y = self.rect.y
 
-
     def move_left(self, vel):
         self.vel_x = -vel
         if self.dir != "left":
@@ -51,7 +50,7 @@ class Player:
 
     def loop(self, fps):
         self.vel_y += min(1, (self.fall_count / fps) * self.gravity)
-        self.move( self.vel_x, self.vel_y )
+        self.move(self.vel_x, self.vel_y)
 
         self.fall_count += 1
 

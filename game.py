@@ -56,8 +56,11 @@ def playerhandler(player, objects):
     keys = pygame.key.get_pressed()
     player.vel_x = 0
 
-    collide_left = handle_horizontal_collision(player, objects, -Player_vel * 3)
-    collide_right = handle_horizontal_collision(player, objects, Player_vel * 3)
+    #collide_left = handle_horizontal_collision(player, objects, -Player_vel * 3)
+    #collide_right = handle_horizontal_collision(player, objects, Player_vel * 3)
+
+    #collide_left = objects.horizontal_collision(player, -Player_vel * 3)
+    #collide_right = objects.horizontal_collision(player, Player_vel * 3)
 
     if keys[pygame.K_LEFT]:
         player.move_left(Player_vel)
@@ -65,14 +68,15 @@ def playerhandler(player, objects):
     if keys[pygame.K_RIGHT]:
         player.move_right(Player_vel)
 
-    vertical_collide = handle_vertical_collision(player, objects, player.vel_y)
+    #vertical_collide = handle_vertical_collision(player, objects, player.vel_y)
+    vertical_collide = objects.vertical_collision(player, player.vel_y)
 
 def draw_onboard(win, player, objects, offset_x):
     #for block in objects:
     #    block.draw(win, offset_x)
-    objects.draw(win)
+    objects.draw(win, offset_x)
 
-    #player.draw(win, offset_x)
+    player.draw(win, offset_x)
     pygame.display.update()
 
 def main(win):
@@ -86,8 +90,8 @@ def main(win):
     player = Player(20, screen_height - floor_size + 2)
     #ground = Ground(150, 150, )
     #objects = [*floor, Ground(500, screen_height - (floor_size * 2), floor_size)]
-    level_map = Level1
-    objects = level_map.add_Ground(floor_size)
+    level_map = Level1()
+    level_map.ground_blocks(floor_size)
 
     offset_x = 0
     scroll_area_width = 200
@@ -104,8 +108,8 @@ def main(win):
 
 
         player.loop(FPS)
-        playerhandler(player, objects)
-        draw_onboard(win, player, objects, offset_x)
+        playerhandler(player, level_map)
+        draw_onboard(win, player, level_map, offset_x)
 
         #if ((player.rect.right - offset_x >= screen_width - scroll_area_width) and player.vel_x > 0) or (
         #        (player.rect.right - offset_x <= scroll_area_width) and player.vel_x < 0):
