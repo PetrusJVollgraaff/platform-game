@@ -10,7 +10,7 @@ Using Python and PyGame to create space invader game
 > * Creating Objects for player to interact/collide
 > * build map array that contain Objects 
 
-## Outstandin
+## Outstanding
 > * fix left/right collide with Objects
 > * Camera move with player
 > * is Player hit
