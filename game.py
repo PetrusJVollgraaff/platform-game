@@ -71,5 +71,5 @@ def main(win):
         draw_onboard(win, player, level_map, offset_x)
 
         #if ((player.rect.right - offset_x >= screen_width - scroll_area_width) and player.vel_x > 0) or (
-        #        (player.rect.right - offset_x <= scroll_area_width) and player.vel_x < 0):
+        #        (player.rect.right - offset_x <= scroll_area_width) and player.vel_x <= 0):
         #    offset_x += player.vel_x

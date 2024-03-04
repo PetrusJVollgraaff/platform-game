@@ -19,7 +19,7 @@ class Player:
         self.rect = pygame.Rect(x, y, self.size[0], self.size[1])
 
     def draw(self, win, offset_x):
-        #self.rect.x = self.rect.x - offset_x
+        self.rect.x = self.rect.x - offset_x
         pygame.draw.rect(win, self.color, self.rect)
 
     def jump(self):

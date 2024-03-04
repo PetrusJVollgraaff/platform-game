@@ -11,7 +11,7 @@ class Object:
         self.rect = pygame.Rect(x, y, self.width, self.height)
 
     def draw(self, win, offset_x):
-        #self.rect.x = self.rect.x - offset_x
+        self.rect.x = self.rect.x - offset_x
         #win.blit(self.image, (self.rect.x, self.rect.y))
         pygame.draw.rect(win, self.color, self.rect)
 
